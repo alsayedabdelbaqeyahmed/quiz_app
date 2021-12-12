@@ -97,6 +97,15 @@ public final class R {
      */
     public static final int fontProviderQuery=0x7f010007;
     /**
+     * Provides the system font family name to check before downloading the font. For
+     * example if the fontProviderQuery asked for "Sans Serif", it is possible to define
+     * fontProviderSystemFontFamily as "sans-serif" to tell the system to use "sans-serif" font
+     * family if it exists on the system.
+     * <p>May be a string value, using '\\;' to escape characters such as
+     * '\\n' or '\\uxxxx' for a unicode character;
+     */
+    public static final int fontProviderSystemFontFamily=0x7f010008;
+    /**
      * The style of the given font file. This will be used when the font is being loaded into
      * the font stack and will override any style information in the font's header tables. If
      * unspecified, the value in the font's header tables will be used.
@@ -110,7 +119,7 @@ public final class R {
      * <tr><td>normal</td><td>0</td><td></td></tr>
      * </table>
      */
-    public static final int fontStyle=0x7f010008;
+    public static final int fontStyle=0x7f010009;
     /**
      * The variation settings to be applied to the font. The string should be in the following
      * format: "'tag1' value1, 'tag2' value2, ...". If the default variation settings should be
@@ -119,7 +128,7 @@ public final class R {
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      */
-    public static final int fontVariationSettings=0x7f010009;
+    public static final int fontVariationSettings=0x7f01000a;
     /**
      * The weight of the given font file. This will be used when the font is being loaded into
      * the font stack and will override any weight information in the font's header tables. Must
@@ -128,19 +137,41 @@ public final class R {
      * in the font's header tables will be used.
      * <p>May be an integer value, such as "<code>100</code>".
      */
-    public static final int fontWeight=0x7f01000a;
+    public static final int fontWeight=0x7f01000b;
+    /**
+     * <p>May be a reference to another resource, in the form
+     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+     * attribute in the form
+     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+     */
+    public static final int nestedScrollViewStyle=0x7f01000c;
+    /**
+     * Resource reference to the string array of query patterns for a custom capability.
+     * <p>May be a reference to another resource, in the form
+     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+     * attribute in the form
+     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+     */
+    public static final int queryPatterns=0x7f01000d;
+    /**
+     * Indicates whether a parameter in a capability template can only contain a matched
+     * shortcut id and not an arbitrary string.
+     * <p>May be a boolean value, such as "<code>true</code>" or
+     * "<code>false</code>".
+     */
+    public static final int shortcutMatchRequired=0x7f01000e;
     /**
      * The index of the font in the tcc font file. If the font file referenced is not in the
      * tcc format, this attribute needs not be specified.
      * <p>May be an integer value, such as "<code>100</code>".
      */
-    public static final int ttcIndex=0x7f01000b;
+    public static final int ttcIndex=0x7f01000f;
   }
   public static final class color {
-    public static final int notification_action_color_filter=0x7f020000;
-    public static final int notification_icon_bg_color=0x7f020001;
-    public static final int ripple_material_light=0x7f020002;
-    public static final int secondary_text_default_material_light=0x7f020003;
+    public static final int androidx_core_ripple_material_light=0x7f020000;
+    public static final int androidx_core_secondary_text_default_material_light=0x7f020001;
+    public static final int notification_action_color_filter=0x7f020002;
+    public static final int notification_icon_bg_color=0x7f020003;
   }
   public static final class dimen {
     public static final int compat_button_inset_horizontal_material=0x7f030000;
@@ -241,14 +272,19 @@ public final class R {
     public static final int tag_accessibility_clickable_spans=0x7f050038;
     public static final int tag_accessibility_heading=0x7f050039;
     public static final int tag_accessibility_pane_title=0x7f05003a;
-    public static final int tag_screen_reader_focusable=0x7f05003b;
-    public static final int tag_transition_group=0x7f05003c;
-    public static final int tag_unhandled_key_event_manager=0x7f05003d;
-    public static final int tag_unhandled_key_listeners=0x7f05003e;
-    public static final int text=0x7f05003f;
-    public static final int text2=0x7f050040;
-    public static final int time=0x7f050041;
-    public static final int title=0x7f050042;
+    public static final int tag_on_apply_window_listener=0x7f05003b;
+    public static final int tag_on_receive_content_listener=0x7f05003c;
+    public static final int tag_on_receive_content_mime_types=0x7f05003d;
+    public static final int tag_screen_reader_focusable=0x7f05003e;
+    public static final int tag_state_description=0x7f05003f;
+    public static final int tag_transition_group=0x7f050040;
+    public static final int tag_unhandled_key_event_manager=0x7f050041;
+    public static final int tag_unhandled_key_listeners=0x7f050042;
+    public static final int tag_window_insets_animation_callback=0x7f050043;
+    public static final int text=0x7f050044;
+    public static final int text2=0x7f050045;
+    public static final int time=0x7f050046;
+    public static final int title=0x7f050047;
   }
   public static final class integer {
     public static final int status_bar_notification_info_maxnum=0x7f060000;
@@ -280,6 +316,48 @@ public final class R {
     public static final int Widget_Compat_NotificationActionText=0x7f0a0008;
   }
   public static final class styleable {
+    /**
+     * Attributes that can be used with a Capability.
+     * <p>Includes the following attributes:</p>
+     * <table>
+     * <colgroup align="left" />
+     * <colgroup align="left" />
+     * <tr><th>Attribute</th><th>Description</th></tr>
+     * <tr><td><code>{@link #Capability_queryPatterns com.example.quiz_app:queryPatterns}</code></td><td>Resource reference to the string array of query patterns for a custom capability.</td></tr>
+     * <tr><td><code>{@link #Capability_shortcutMatchRequired com.example.quiz_app:shortcutMatchRequired}</code></td><td>Indicates whether a parameter in a capability template can only contain a matched
+     * shortcut id and not an arbitrary string.</td></tr>
+     * </table>
+     * @see #Capability_queryPatterns
+     * @see #Capability_shortcutMatchRequired
+     */
+    public static final int[] Capability={
+      0x7f01000d, 0x7f01000e
+    };
+    /**
+     * <p>
+     * @attr description
+     * Resource reference to the string array of query patterns for a custom capability.
+     *
+     * <p>May be a reference to another resource, in the form
+     * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
+     * attribute in the form
+     * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
+     *
+     * @attr name com.example.quiz_app:queryPatterns
+     */
+    public static final int Capability_queryPatterns=0;
+    /**
+     * <p>
+     * @attr description
+     * Indicates whether a parameter in a capability template can only contain a matched
+     * shortcut id and not an arbitrary string.
+     *
+     * <p>May be a boolean value, such as "<code>true</code>" or
+     * "<code>false</code>".
+     *
+     * @attr name com.example.quiz_app:shortcutMatchRequired
+     */
+    public static final int Capability_shortcutMatchRequired=1;
     /**
      * Attributes that can be used with a ColorStateListItem.
      * <p>Includes the following attributes:</p>
@@ -342,6 +420,7 @@ public final class R {
      * <tr><td><code>{@link #FontFamily_fontProviderFetchTimeout com.example.quiz_app:fontProviderFetchTimeout}</code></td><td>The length of the timeout during fetching.</td></tr>
      * <tr><td><code>{@link #FontFamily_fontProviderPackage com.example.quiz_app:fontProviderPackage}</code></td><td>The package for the Font Provider to be used for the request.</td></tr>
      * <tr><td><code>{@link #FontFamily_fontProviderQuery com.example.quiz_app:fontProviderQuery}</code></td><td>The query to be sent over to the provider.</td></tr>
+     * <tr><td><code>{@link #FontFamily_fontProviderSystemFontFamily com.example.quiz_app:fontProviderSystemFontFamily}</code></td><td>Provides the system font family name to check before downloading the font.</td></tr>
      * </table>
      * @see #FontFamily_fontProviderAuthority
      * @see #FontFamily_fontProviderCerts
@@ -349,10 +428,11 @@ public final class R {
      * @see #FontFamily_fontProviderFetchTimeout
      * @see #FontFamily_fontProviderPackage
      * @see #FontFamily_fontProviderQuery
+     * @see #FontFamily_fontProviderSystemFontFamily
      */
     public static final int[] FontFamily={
       0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005, 
-      0x7f010006, 0x7f010007
+      0x7f010006, 0x7f010007, 0x7f010008
     };
     /**
      * <p>
@@ -458,6 +538,20 @@ public final class R {
      */
     public static final int FontFamily_fontProviderQuery=5;
     /**
+     * <p>
+     * @attr description
+     * Provides the system font family name to check before downloading the font. For
+     * example if the fontProviderQuery asked for "Sans Serif", it is possible to define
+     * fontProviderSystemFontFamily as "sans-serif" to tell the system to use "sans-serif" font
+     * family if it exists on the system.
+     *
+     * <p>May be a string value, using '\\;' to escape characters such as
+     * '\\n' or '\\uxxxx' for a unicode character;
+     *
+     * @attr name com.example.quiz_app:fontProviderSystemFontFamily
+     */
+    public static final int FontFamily_fontProviderSystemFontFamily=6;
+    /**
      * Attributes that can be used with a FontFamilyFont.
      * <p>Includes the following attributes:</p>
      * <table>
@@ -488,8 +582,8 @@ public final class R {
      */
     public static final int[] FontFamilyFont={
       0x01010532, 0x01010533, 0x0101053f, 0x0101056f, 
-      0x01010570, 0x7f010001, 0x7f010008, 0x7f010009, 
-      0x7f01000a, 0x7f01000b
+      0x01010570, 0x7f010001, 0x7f010009, 0x7f01000a, 
+      0x7f01000b, 0x7f01000f
     };
     /**
      * <p>This symbol is the offset where the {@link android.R.attr#font}

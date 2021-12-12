@@ -63,12 +63,13 @@ class ProgParAnimation extends GetxController
     if (_correctanse == _selectedAns) {
       _numOfCorrectAns++;
     }
+
     // to stop the animation after the user check the answer
     _animationController.stop();
     update();
     // Once user select an ans after 3s it will go to the next qn
     Future.delayed(
-      Duration(seconds: 3),
+      Duration(seconds: 1),
       () {
         nextQuestion();
       },
@@ -98,9 +99,10 @@ class ProgParAnimation extends GetxController
 
   void startAgain() {
     _numOfCorrectAns = 0;
+    _selectedAns = null;
     _questionNumber.value = 1;
+    onInit();
 
-    nextQuestion();
     update();
   }
 }

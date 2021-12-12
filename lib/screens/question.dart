@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controller/progress_bar_animation.dart';
 import 'package:quiz_app/models/constants.dart';
-
 import 'package:quiz_app/controller/question_controller.dart';
-
 import 'package:quiz_app/widget/progress_par.dart';
 import 'package:quiz_app/widget/question_card.dart';
 import 'package:websafe_svg/websafe_svg.dart';
@@ -17,6 +15,7 @@ class QuestionScreen extends StatefulWidget {
 class _QuestionScreenState extends State<QuestionScreen> {
   final questionController = Get.put(QuestionController());
   final controller = Get.put(ProgParAnimation());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +42,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: kDefaultPadding / 2),
+                      horizontal: kDefaultPadding / 2,
+                    ),
                     child: ProgressParWidget(),
                   ),
                   Padding(
@@ -72,12 +72,17 @@ class _QuestionScreenState extends State<QuestionScreen> {
                   SizedBox(height: kDefaultPadding),
                   Expanded(
                     child: PageView.builder(
-                      onPageChanged: controller.updateQuestion,
+                      onPageChanged: (value) {
+                        controller.updateQuestion(value);
+                        setState(() {});
+                      },
                       physics: NeverScrollableScrollPhysics(),
                       controller: controller.pageconroller,
-                      itemBuilder: (ctx, index) => QuestionCard(
-                        question: questionController.question[index],
-                      ),
+                      itemBuilder: (ctx, index) {
+                        return QuestionCard(
+                          question: questionController.question[index],
+                        );
+                      },
                       itemCount: questionController.question.length,
                     ),
                   ),

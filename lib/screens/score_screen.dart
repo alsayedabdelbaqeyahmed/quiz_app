@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:quiz_app/controller/progress_bar_animation.dart';
 import 'package:quiz_app/controller/question_controller.dart';
 import 'package:quiz_app/models/constants.dart';
-
 import 'package:quiz_app/screens/question.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 

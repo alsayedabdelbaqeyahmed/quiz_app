@@ -60,7 +60,8 @@ class QuestionCard extends StatelessWidget {
       builder: (qnController) {
         Color getTheColor() {
           if (qnController.isanswerd) {
-            if (index == qnController.correctanse) {
+            if (index == qnController.selectedAns &&
+                index == qnController.correctanse) {
               return kGreenColor;
             } else if (index == qnController.selectedAns &&
                 index != qnController.correctanse) {
@@ -94,11 +95,12 @@ class QuestionCard extends StatelessWidget {
                   width: 25,
                   height: 25,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      border: Border.all(color: getTheColor()),
-                      color: getTheColor() == kGrayColor
-                          ? Colors.transparent
-                          : getTheColor()),
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(color: getTheColor()),
+                    color: getTheColor() == kGrayColor
+                        ? Colors.transparent
+                        : getTheColor(),
+                  ),
                   child: getTheColor() == kGrayColor
                       ? null
                       : Icon(
