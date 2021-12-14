@@ -9,6 +9,7 @@ import 'package:websafe_svg/websafe_svg.dart';
 class ScoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     ProgParAnimation _controller = Get.put(ProgParAnimation());
     QuestionController _qnController = Get.put(QuestionController());
     return Scaffold(
@@ -39,7 +40,7 @@ class ScoreScreen extends StatelessWidget {
                     .copyWith(color: kGrayColor),
               ),
               Spacer(),
-              FlatButton(
+              TextButton(
                 child: Text(
                   'Again',
                   style: Theme.of(context)
@@ -49,8 +50,12 @@ class ScoreScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   _controller.startAgain();
-
-                  Get.to(QuestionScreen());
+                  Future.delayed(
+                    Duration(seconds: 2),
+                    () {
+                      Get.to(QuestionScreen());
+                    },
+                  );
                 },
               ),
               Spacer(flex: 3),

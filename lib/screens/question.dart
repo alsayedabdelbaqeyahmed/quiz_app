@@ -18,13 +18,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          FlatButton(
+          TextButton(
             child: Text('Skip'),
             onPressed: controller.nextQuestion,
           )
@@ -32,23 +33,22 @@ class _QuestionScreenState extends State<QuestionScreen> {
       ),
       body: Stack(
         children: [
-          WebsafeSvg.asset('assets/icons/bg.svg',
-              fit: BoxFit.fill, width: double.infinity),
+          WebsafeSvg.asset(
+            'assets/icons/bg.svg',
+            fit: BoxFit.fill,
+            width: double.infinity,
+          ),
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: kDefaultPadding / 2,
-                    ),
-                    child: ProgressParWidget(),
-                  ),
+                  ProgressParWidget(),
+                  SizedBox(height: size.height * 0.015),
                   Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                        EdgeInsets.symmetric(horizontal: size.width * 0.04),
                     child: Text.rich(
                       TextSpan(
                         text: 'Question ${controller.questionNumber}',
@@ -68,8 +68,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       ),
                     ),
                   ),
+                  SizedBox(height: size.height * 0.01),
                   Divider(thickness: 1.5),
-                  SizedBox(height: kDefaultPadding),
+                  SizedBox(height: size.height * 0.02),
                   Expanded(
                     child: PageView.builder(
                       onPageChanged: (value) {
@@ -86,6 +87,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
                       itemCount: questionController.question.length,
                     ),
                   ),
+                  SizedBox(height: size.height * 0.04),
                 ],
               ),
             ),

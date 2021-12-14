@@ -11,11 +11,13 @@ class ProgressParWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Container(
       width: double.infinity,
-      height: 50,
+      height: size.height * 0.07,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(50)),
+          borderRadius: BorderRadius.all(Radius.circular(size.width * 0.5)),
           border: Border.all(
             color: Color(0xff3f4768),
           )),
@@ -27,19 +29,20 @@ class ProgressParWidget extends StatelessWidget {
           // استخدمها هنا علي شان اقدر اتحكم في حجم التشيلد من
           // وبالتالي لما اجي اعمل انميشن اقدر استفيد منها
           children: [
-            LayoutBuilder(
-              builder: (ctx, data) => Container(
+            LayoutBuilder(builder: (ctx, data) {
+              return Container(
                 // from 0 to 1 takes 60s
                 width: data.maxWidth * controller.animation.value,
                 decoration: BoxDecoration(
                   gradient: kPrimaryGradient,
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(size.width * 0.5)),
                 ),
-              ),
-            ),
+              );
+            }),
             Positioned.fill(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: size.width * .04),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

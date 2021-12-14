@@ -12,56 +12,59 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProgParAnimation _controller = Get.put(ProgParAnimation());
+    final size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(
-          horizontal: kDefaultPadding / 2, vertical: kDefaultPadding / 2),
-      padding: EdgeInsets.all(kDefaultPadding),
+        horizontal: size.width * 0.02,
+        vertical: size.width * 0.01,
+      ),
+      padding: EdgeInsets.all(size.width * 0.055),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(size.width * 0.06),
         color: Colors.white,
       ),
-      child: Column(
-        children: [
-          Text(
-            question.question,
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                .copyWith(color: kBlackColor),
-          ),
-          SizedBox(height: kDefaultPadding),
-          // يعني باستدعيها علي شان اخد ليست من القيم ارجعهم قيمه قيمه
-          // علي عدد مرات يساوي الطول الي محدده عندي
-          /**Generates a list of values. Creates a list with length positions
-           *  and fills it with values created by
-           * calling Function for each index */
-          ...List.generate(
-            question.options
-                .length, // length positions = 4 mean 4 value will back from options
-            // Function wich return list of values
-            (index) {
-              return options(
-                index: index,
-
-                text: question.options[
-                    index], // option1 the option 2 .... then option 4 back to text vari
-                press: () => _controller.checkAnswer(index, question),
-              );
-            },
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(
+              question.question,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  .copyWith(color: kBlackColor),
+            ),
+            SizedBox(height: size.height * 0.03),
+            // يعني باستدعيها علي شان اخد ليست من القيم ارجعهم قيمه قيمه
+            // علي عدد مرات يساوي الطول الي محدده عندي
+            /**Generates a list of values. Creates a list with length positions
+             *  and fills it with values created by
+             * calling Function for each index */
+            ...List.generate(
+              question.options
+                  .length, // length positions = 4 mean 4 value will back from options
+              // Function wich return list of values
+              (index) {
+                return options(
+                    index: index,
+                    text: question.options[
+                        index], // option1 the option 2 .... then option 4 back to text vari
+                    press: () => _controller.checkAnswer(index, question),
+                    size: size);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget options({String text, int index, VoidCallback press}) {
+  Widget options({String text, int index, VoidCallback press, Size size}) {
     return GetBuilder<ProgParAnimation>(
       init: ProgParAnimation(),
       builder: (qnController) {
         Color getTheColor() {
           if (qnController.isanswerd) {
-            if (index == qnController.selectedAns &&
-                index == qnController.correctanse) {
+            if (index == qnController.correctanse) {
               return kGreenColor;
             } else if (index == qnController.selectedAns &&
                 index != qnController.correctanse) {
@@ -80,22 +83,25 @@ class QuestionCard extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: getTheColor()),
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(size.width * 0.05),
             ),
-            padding: EdgeInsets.all(kDefaultPadding),
-            margin: EdgeInsets.only(top: kDefaultPadding),
+            padding: EdgeInsets.all(size.width * 0.04),
+            margin: EdgeInsets.only(top: size.height * 0.04),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   '${index + 1} $text',
-                  style: TextStyle(color: getTheColor(), fontSize: 16),
+                  style: TextStyle(
+                    color: getTheColor(),
+                    fontSize: size.width * 0.05,
+                  ),
                 ),
                 Container(
-                  width: 25,
-                  height: 25,
+                  width: size.width * 0.07,
+                  height: size.width * 0.07,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(size.width * 0.04),
                     border: Border.all(color: getTheColor()),
                     color: getTheColor() == kGrayColor
                         ? Colors.transparent
@@ -105,7 +111,7 @@ class QuestionCard extends StatelessWidget {
                       ? null
                       : Icon(
                           getTheIcon(),
-                          size: 16,
+                          size: size.width * 0.06,
                         ),
                 )
               ],

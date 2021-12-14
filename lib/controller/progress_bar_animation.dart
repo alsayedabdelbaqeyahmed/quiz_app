@@ -1,4 +1,3 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controller/question_controller.dart';
@@ -82,14 +81,19 @@ class ProgParAnimation extends GetxController
       _pageController == null
           ? print('error')
           : _pageController.nextPage(
-              duration: Duration(seconds: 1), curve: Curves.ease);
+              duration: Duration(seconds: 3), curve: Curves.ease);
       // Reset the counter
       _animationController.reset();
       // Then start it again
       // Once timer is finish go to the next qn so that the oninit only start once
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      Get.to(ScoreScreen());
+      Future.delayed(
+        Duration(seconds: 2),
+        () {
+          Get.to(ScoreScreen());
+        },
+      );
     }
   }
 
@@ -99,8 +103,9 @@ class ProgParAnimation extends GetxController
 
   void startAgain() {
     _numOfCorrectAns = 0;
-    _selectedAns = null;
+
     _questionNumber.value = 1;
+    _isanswerd = false;
     onInit();
 
     update();
