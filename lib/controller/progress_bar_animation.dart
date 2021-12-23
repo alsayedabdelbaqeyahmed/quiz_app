@@ -91,7 +91,9 @@ class ProgParAnimation extends GetxController
       Future.delayed(
         Duration(seconds: 2),
         () {
-          Get.to(ScoreScreen());
+          Get.to(
+            ScoreScreen(),
+          );
         },
       );
     }
