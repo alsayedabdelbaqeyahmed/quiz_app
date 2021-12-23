@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controller/question_controller.dart';
+import 'package:quiz_app/models/animated_page-route.dart';
 import 'package:quiz_app/models/questions.dart';
 import 'package:quiz_app/screens/score_screen.dart';
 
@@ -8,6 +9,8 @@ class ProgParAnimation extends GetxController
     with SingleGetTickerProviderMixin {
   QuestionController controller = Get.put(QuestionController());
   // QuestionController quesCont = Get.put(QuestionController());
+  BuildContext context;
+
   AnimationController _animationController;
   Animation _animation;
   // so that we can access our animation outside
@@ -88,11 +91,17 @@ class ProgParAnimation extends GetxController
       // Once timer is finish go to the next qn so that the oninit only start once
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      Future.delayed(
-        Duration(seconds: 2),
-        () {
-          Get.to(ScoreScreen());
-        },
+      Navigator.pushReplacement(
+        context,
+        AnimatedPageRoute(
+          widget: ScoreScreen(),
+          beginDx: 0.1,
+          beginDy: 0.0,
+          endDx: 0,
+          endDy: 0,
+          curve: Curves.ease,
+          duration: Duration(seconds: 2),
+        ),
       );
     }
   }

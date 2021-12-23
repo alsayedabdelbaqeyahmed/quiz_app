@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controller/progress_bar_animation.dart';
+import 'package:quiz_app/models/animated_page-route.dart';
 import 'package:quiz_app/models/constants.dart';
 import 'package:quiz_app/screens/score_screen.dart';
 import 'package:websafe_svg/websafe_svg.dart';
@@ -53,11 +54,17 @@ class MyHomePage extends StatelessWidget {
                   Spacer(),
                   InkWell(
                     onTap: () {
-                      Future.delayed(
-                        Duration(seconds: 2),
-                        () {
-                          Get.to(QuestionScreen());
-                        },
+                      Navigator.push(
+                        context,
+                        AnimatedPageRoute(
+                          widget: QuestionScreen(),
+                          beginDx: 10.0,
+                          beginDy: 10.0,
+                          endDx: 0,
+                          endDy: 0,
+                          curve: Curves.ease,
+                          duration: Duration(seconds: 1),
+                        ),
                       );
                     },
                     child: Container(

@@ -19,6 +19,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    controller.context = context;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
