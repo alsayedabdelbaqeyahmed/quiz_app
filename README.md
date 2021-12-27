@@ -1,14 +1,12 @@
 # quiz_app
 
-quiz app based on youtube tutorila but a made tha app resposive to diffrtrnt mobile asize and also add the feature of 'AGAIN " to replay the quiz and answoer the queationd 
+quiz app based on youtube Tutorial  but i add some feature to the app like i made the app responsive to different mobile size , also added the feature of 'AGAIN " to replay the quiz and answer the question.
 
-also i made an animation  with the transition brteween HomeScreen and QueationScreen and aslo between the final QuestionCard and the ScoreScreen
+I made an animation transition between HomeScreen and QuestionScreen and also between the final QuestionCard and the ScoreScreen
 
-thr project use GetX as state-Mangment and i use MVM as design pattern 
+The project use GetX as state management and MVM as design pattern.
 
-link of orignal tutorial https://www.youtube.com/watch?v=Nhy0VWAMsFU&list=PLxUBb2A_UUy-b9BA5etZ4oMt_77R3EUYW&index=1
-
-A new Flutter project.
+link of original  tutorial https://www.youtube.com/watch?v=Nhy0VWAMsFU&list=PLxUBb2A_UUy-b9BA5etZ4oMt_77R3EUYW&index=1
 
 ## Getting Started
 
